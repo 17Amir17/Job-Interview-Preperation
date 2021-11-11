@@ -4,6 +4,7 @@ const mongo = require('./scripts/mongo/mongoClient');
 //middleware and routers import
 const errorHandler = require('./scripts/middleware/errorHandler');
 const listRouter = require('./scripts/routers/listEnd');
+const updateRouter = require('./scripts/routers/updateEnd');
 //DB setup
 const mongoInit = mongo.init();
 //Port setup
@@ -16,6 +17,7 @@ app.use(cors());
 // .....
 // Routers
 app.use('/info', listRouter);
+app.use('/update', updateRouter);
 // Error Handler
 // .....
 app.use(errorHandler);

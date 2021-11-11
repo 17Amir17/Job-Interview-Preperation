@@ -1,7 +1,12 @@
+const errorCodes = require('../constants/errorCodes');
+
 function errorHandler(err, req, res, next) {
-  switch (err) {
-    default:
-      res.status(500).json({ error: err.message });
+  for (const error in errorCodes) {
+    if (errorCodes[error] === err)
+      return res
+        .status(errorCodes[error].code)
+        .json({ error: errorCodes[error].message });
+    res.status(500).json({ error: err.message });
   }
 }
 
