@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongo = require('./scripts/mongo/mongoClient');
-
+//middleware and routers import
+const errorHandler = require('./scripts/middleware/errorHandler');
 //DB setup
 const mongoInit = mongo.init();
 //Port setup
@@ -16,6 +17,7 @@ app.use(cors());
 // .....
 // Error Handler
 // .....
+app.use(errorHandler);
 (async () => {
   // Wait for mongo
   await mongoInit;
