@@ -11,7 +11,7 @@ const questionsShema = new mongoose.Schema({
     required: true,
   },
   answers: {
-    type: String,
+    type: [String],
     required: true,
   },
   dificulty: {

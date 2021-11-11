@@ -1,5 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const questions = require('./models/questions');
+const Question = require('./models/questions');
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.usl1e.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
 
 async function init() {
@@ -21,7 +23,7 @@ async function init() {
 }
 
 async function clear() {
-  return; //await model.deleteMany({});
+  return await Question.deleteMany({});
 }
 
 async function close() {
