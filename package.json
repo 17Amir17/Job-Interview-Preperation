@@ -1,0 +1,32 @@
+{
+  "name": "job-interview-preperation",
+  "version": "1.0.0",
+  "description": "Job Interview Preperation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./back/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/17Amir17/Job-Interview-Preperation.git"
+  },
+  "author": "Amir Angel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/17Amir17/Job-Interview-Preperation/issues"
+  },
+  "homepage": "https://github.com/17Amir17/Job-Interview-Preperation#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3"
+  }
+}
