@@ -6,7 +6,7 @@ async function insertMany(data) {
 }
 
 async function getAllQuestions() {
-  return await Question.find({});
+  return await Question.find({}).sort({ difficulty: 1 });
 }
 
 async function updateQuestion(question) {
@@ -37,10 +37,22 @@ async function deleteQuestionById(_id) {
   }
 }
 
+async function getGreaterOrEqual(difficulty) {
+  // Returns all questions greater or equal to difficulty in ascending way
+  try {
+    return await Question.find({
+      difficulty: { $gte: difficulty },
+    }).sort({ difficulty: 1 });
+  } catch (error) {
+    throw errorCodes.unknownMongoError;
+  }
+}
+
 module.exports = {
   insertMany,
   getAllQuestions,
   updateQuestion,
   addQuestion,
   deleteQuestionById,
+  getGreaterOrEqual,
 };
