@@ -8,4 +8,4 @@ async function getAllQuestions() {
   return await Question.find({});
 }
 
-module.exports = { insertMany };
+module.exports = { insertMany, getAllQuestions };
