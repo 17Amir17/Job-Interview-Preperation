@@ -20,4 +20,13 @@ async function updateQuestion(question) {
   }
 }
 
-module.exports = { insertMany, getAllQuestions, updateQuestion };
+async function addQuestion(question) {
+  try {
+    const quest = new Question({ ...question });
+    return await quest.save();
+  } catch (error) {
+    throw errorCodes.badEntryFormat;
+  }
+}
+
+module.exports = { insertMany, getAllQuestions, updateQuestion, addQuestion };

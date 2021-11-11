@@ -4,7 +4,7 @@ const questionQueries = require('../mongo/queries/questionQueries');
 const router = express.Router();
 
 router.put('', (req, res, next) => {
-  const newQuestion = req.body.question;
+  const newQuestion = req.body;
   if (!newQuestion || !newQuestion._id) throw errorCodes.requestInputInvalid;
   questionQueries.updateQuestion(newQuestion).then(
     (mongoRes) => {
