@@ -6,6 +6,7 @@ const errorHandler = require('./scripts/middleware/errorHandler');
 const listRouter = require('./scripts/routers/listEnd');
 const updateRouter = require('./scripts/routers/updateEnd');
 const createRouter = require('./scripts/routers/createEnd');
+const deleteRouter = require('./scripts/routers/removeEnd');
 //DB setup
 const mongoInit = mongo.init();
 //Port setup
@@ -20,6 +21,7 @@ app.use(cors());
 app.use('/info', listRouter);
 app.use('/update', updateRouter);
 app.use('/create', createRouter);
+app.use('/remove', deleteRouter);
 // Error Handler
 // .....
 app.use(errorHandler);

@@ -29,4 +29,18 @@ async function addQuestion(question) {
   }
 }
 
-module.exports = { insertMany, getAllQuestions, updateQuestion, addQuestion };
+async function deleteQuestionById(_id) {
+  try {
+    return await Question.deleteOne({ _id });
+  } catch (error) {
+    throw errorCodes.couldNotFindEntry;
+  }
+}
+
+module.exports = {
+  insertMany,
+  getAllQuestions,
+  updateQuestion,
+  addQuestion,
+  deleteQuestionById,
+};
