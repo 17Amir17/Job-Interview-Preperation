@@ -11,3 +11,13 @@ export async function postQuestion(question) {
   const res = await axios.post(`${base_url}/create`, question);
   return res;
 }
+
+export function getLeaderboard() {
+  const res = await axios.get(`${base_url}/leaderboard/get`);
+  return res;
+}
+
+export function sumbitScore(name, score) {
+  const res = await axios.post(`${base_url}/leaderboard`, { name, score });
+  return res;
+}
