@@ -1,7 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const mongo = require('./scripts/mongo/mongoClient');
-
+//middleware and routers import
+const errorHandler = require('./scripts/middleware/errorHandler');
+const listRouter = require('./scripts/routers/listEnd');
+const updateRouter = require('./scripts/routers/updateEnd');
+const createRouter = require('./scripts/routers/createEnd');
+const deleteRouter = require('./scripts/routers/removeEnd');
+const difficultyRouter = require('./scripts/routers/difficultyEnd');
 //DB setup
 const mongoInit = mongo.init();
 //Port setup
@@ -13,9 +19,14 @@ app.use(cors());
 // Middleware
 // .....
 // Routers
-// .....
+app.use('/info', listRouter);
+app.use('/update', updateRouter);
+app.use('/create', createRouter);
+app.use('/remove', deleteRouter);
+app.use('/read/by/difficulty', difficultyRouter);
 // Error Handler
 // .....
+app.use(errorHandler);
 (async () => {
   // Wait for mongo
   await mongoInit;

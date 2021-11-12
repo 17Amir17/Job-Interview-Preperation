@@ -4,19 +4,18 @@ const questionsShema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
   },
   correctAnswer: {
     type: String,
     required: true,
   },
   answers: {
-    type: String,
+    type: [String],
     required: true,
   },
-  dificulty: {
+  difficulty: {
     type: Number,
-    required: false,
+    required: true,
   },
 });
 
