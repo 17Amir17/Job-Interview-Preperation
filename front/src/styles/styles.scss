@@ -5,6 +5,7 @@
 @import './quiz.scss';
 @import './form.scss';
 @import './mobile.scss';
+
 body {
   display: flex;
   justify-content: center;
@@ -12,4 +13,17 @@ body {
   flex-direction: column;
   font-family: 'Raleway', sans-serif;
   font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
 }

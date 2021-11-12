@@ -22,7 +22,6 @@ function createRowElement(name, score, number) {
 }
 
 function createElement(tag, innerText = '', attributes = {}, children = []) {
-  console.log(innerText);
   const elem = document.createElement(tag);
   elem.innerText = innerText;
   for (const att in attributes) {

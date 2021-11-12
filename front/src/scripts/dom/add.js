@@ -1,3 +1,4 @@
+import swal from 'sweetalert2';
 import { postQuestion } from '../api/api';
 import { showMenu } from './menu';
 
@@ -26,11 +27,16 @@ export function getInputsAndPost() {
   };
   if (validate(question)) {
     postQuestion(question);
-    alert('Question added');
+    swal.fire('Question added');
     clearInputs();
     hideAdd();
     showMenu();
-  } else alert('Invalid Input');
+  } else
+    swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Invalid input!',
+    });
 }
 
 function validate(question) {

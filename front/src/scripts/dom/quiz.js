@@ -1,6 +1,6 @@
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 import { sumbitScore } from '../api/api';
-import { showMenu } from './menu';
+import { hideMenu, showMenu } from './menu';
 
 const quiz = document.querySelector('.quiz');
 
@@ -90,12 +90,13 @@ function endQuiz() {
 
 async function showDialog() {
   try {
-    const save = await swal({
+    const res = await swal.fire({
       title: 'Nice!',
       text: `Your score is ${score} do you wish to save to leaderboard?`,
-      buttons: true,
+      showDenyButton: true,
+      confirmButtonText: 'Save',
     });
-    if (save) {
+    if (res.isConfirmed) {
       saveScore();
     } else {
       hideQuiz();
@@ -107,28 +108,39 @@ async function showDialog() {
 }
 
 async function saveScore() {
-  const name = await swal({
-    text: 'Enter Name',
-    content: 'input',
-    button: {
-      text: 'Save!',
-      closeModal: false,
-    },
-  });
-  if (!name) showDialog();
-  else {
-    try {
-      await sumbitScore(name, score);
-      swal.stopLoading();
-      swal.close();
-      swal('Done!');
-      hideQuiz();
-      showMenu();
-    } catch (error) {
-      console.log(error.response);
-      if (error.response) swal.alert(error.response.message);
-      else swal.alert('An error has occured');
-      showDialog();
-    }
-  }
+  swal
+    .fire({
+      text: 'Enter Name',
+      input: 'text',
+      allowOutsideClick: false,
+      inputAttributes: {
+        autocapitalize: 'off',
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      showLoaderOnConfirm: true,
+      preConfirm: (name) => {
+        return sumbitScore(name, score)
+          .then((response) => {
+            if (!response.status === 200) {
+              throw new Error(response.statusText);
+            }
+            return response;
+          })
+          .catch((error) => {
+            swal.showValidationMessage(
+              `Request failed: ${error.response.data.error}`
+            );
+          });
+      },
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        swal.fire({
+          title: `Done!`,
+        });
+        hideQuiz();
+        showMenu();
+      }
+    });
 }
