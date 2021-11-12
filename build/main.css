@@ -11320,6 +11320,11 @@ textarea.form-control-lg {
   transition: opacity 0.7s, visibility 0.7s;
 }
 
+.ans {
+  width: 60vw;
+  text-align: left;
+}
+
 body {
   display: flex;
   justify-content: center;

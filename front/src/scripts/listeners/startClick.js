@@ -1,6 +1,6 @@
 import { getAllQuestions } from '../api/api';
 import { hideMenu, showMenu } from '../dom/menu';
-import { showQuiz } from '../dom/quiz';
+import { hideQuiz, showQuiz, start } from '../dom/quiz';
 
 export async function onStartClick(event) {
   //Hide menu
@@ -12,6 +12,13 @@ export async function onStartClick(event) {
 }
 
 async function getQuestions() {
-  const questions = getAllQuestions();
-  console.log(questions);
+  try {
+    start(await getAllQuestions());
+  } catch (error) {
+    alert('Something went wrong');
+    setTimeout(() => {
+      hideQuiz();
+      showMenu();
+    }, 100);
+  }
 }
