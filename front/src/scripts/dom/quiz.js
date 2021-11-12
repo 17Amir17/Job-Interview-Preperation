@@ -20,7 +20,6 @@ export function showQuiz() {
 }
 
 export function start(quest) {
-  console.log(quest);
   questions = quest;
   curQuestIndex = 0;
   score = 0;
@@ -33,6 +32,7 @@ export function loadQuestion() {
   const question = questions[curQuestIndex];
   questionTitle.innerText = question.title;
   difficulty.innerText = question.difficulty;
+  question.answers = shuffle(question.answers);
   for (let i = 0; i < 3; i++) {
     questInputs[i].innerText = question.answers[i];
   }
@@ -44,10 +44,7 @@ export async function ansClick(ans) {
   const question = questions[curQuestIndex];
   const correctIndex = question.answers.indexOf(question.correctAnswer);
   if (correctIndex === ans) {
-    console.log('Correct!');
     score += question.difficulty;
-  } else {
-    console.log('OOf');
   }
   await highlightAnswers(correctIndex);
   curQuestIndex++;
@@ -75,4 +72,18 @@ function endQuiz() {
   console.log(score);
   hideQuiz();
   showMenu();
+}
+
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+  return array;
 }

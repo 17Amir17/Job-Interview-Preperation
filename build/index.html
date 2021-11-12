@@ -100,15 +100,23 @@
             class="form-control fake"
             placeholder="Fake Answer 2"
           />
-          <label for="diff-range" class="form-label">Difficulty</label>
+          <label for="diff-range" class="form-label"
+            >Difficulty: <span class="diff-display"></span
+          ></label>
           <input
             type="range"
-            class="form-range"
+            class=""
             min="0"
             max="10"
             step="1"
             id="diff-range"
           />
+          <button type="button" class="btn btn-outline-dark post">
+            Add Question
+          </button>
+          <button type="button" class="btn btn-outline-dark add-back">
+            Back
+          </button>
         </div>
       </div>
     </div>
