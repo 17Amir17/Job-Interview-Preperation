@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./back/app.js",
-    "resetdb": "node ./back/scripts/mongo/jobs/filldb.js"
+    "resetdb": "node ./back/scripts/mongo/jobs/filldb.js",
+    "start": "node ./back/app.js"
   },
   "repository": {
     "type": "git",

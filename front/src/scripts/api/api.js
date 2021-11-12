@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const base_url = 'http://localHost:3000';
+// const base_url = 'http://localHost:3000';
+const base_url = 'https://fsinterview.herokuapp.com';
 
 export async function getAllQuestions() {
   const res = await axios.get(`${base_url}/info`);
