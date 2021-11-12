@@ -1,0 +1,13 @@
+@import '~bootstrap/scss/bootstrap';
+@import './menu.scss';
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Zen+Kaku+Gothic+New&display=swap');
+@import './swoosh.scss';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Raleway', sans-serif;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}

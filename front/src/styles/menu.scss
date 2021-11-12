@@ -1,0 +1,16 @@
+.menu {
+  width: fit-content;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-outline-dark {
+  margin: 0.5em 0 0.5em 0;
+  min-width: 40vw;
+}
