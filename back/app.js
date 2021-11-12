@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const mongo = require('./scripts/mongo/mongoClient');
 //middleware and routers import
 const errorHandler = require('./scripts/middleware/errorHandler');
@@ -18,6 +19,11 @@ app.use(express.json());
 app.use(cors());
 // Middleware
 // .....
+//Main router and static file
+app.use(express.static(path.join(__dirname, '../build/')));
+app.get('', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 // Routers
 app.use('/info', listRouter);
 app.use('/update', updateRouter);
