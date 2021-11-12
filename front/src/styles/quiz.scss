@@ -1,4 +1,35 @@
+$correct-color: rgb(49, 230, 49);
+$wrong-color: rgb(240, 65, 65);
+
 .ans {
   width: 60vw;
   text-align: left;
+}
+
+.ans:focus,
+.ans:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.wrong {
+  background-color: $wrong-color !important;
+  outline: $wrong-color !important;
+  outline-width: 1em;
+}
+
+.correct {
+  background-color: $correct-color !important;
+  outline: $correct-color !important;
+  outline-width: 1em;
+}
+
+.wrong:hover,
+.correct:hover {
+  background-color: initial;
+  color: initial;
+}
+
+.disable {
+  pointer-events: none;
 }

@@ -8,6 +8,7 @@
   </head>
   <body>
     <h1 class="text-center">Fullstack Interview Helper</h1>
+    <!-- menu -->
     <div class="menu display container">
       <div class="row">
         <div class="col">
@@ -25,15 +26,24 @@
       </div>
       <div class="row">
         <div class="col">
+          <button type="button" class="btn btn-outline-dark leader-btn">
+            Leaderboard
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
           <button type="button" class="btn btn-outline-dark about-btn">
             About
           </button>
         </div>
       </div>
     </div>
+    <!-- quiz -->
     <div class="quiz container swoosh">
       <div class="row">
         <div class="col">
+          <h2>Difficulty <span class="difficulty"></span></h2>
           <h2 class="question">Bla bla bla bla bla</h2>
         </div>
       </div>
@@ -62,6 +72,43 @@
             class="btn btn-outline-dark ans"
             data-ans="2"
           ></button>
+        </div>
+      </div>
+    </div>
+    <!-- add question -->
+    <div class="add-question container swoosh">
+      <div class="row">
+        <div class="col">
+          <h2>Add New Question</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col form">
+          <input type="text" class="form-control title" placeholder="Title" />
+          <input
+            type="text"
+            class="form-control real"
+            placeholder="Correct Answer"
+          />
+          <input
+            type="text"
+            class="form-control fake"
+            placeholder="Fake Answer 1"
+          />
+          <input
+            type="text"
+            class="form-control fake"
+            placeholder="Fake Answer 2"
+          />
+          <label for="diff-range" class="form-label">Difficulty</label>
+          <input
+            type="range"
+            class="form-range"
+            min="0"
+            max="10"
+            step="1"
+            id="diff-range"
+          />
         </div>
       </div>
     </div>

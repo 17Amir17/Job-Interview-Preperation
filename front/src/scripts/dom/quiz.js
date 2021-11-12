@@ -1,8 +1,12 @@
+import { showMenu } from './menu';
+
 const quiz = document.querySelector('.quiz');
 
 let questions;
 let curQuestIndex;
-const questionTitle = document.querySelectorAll('.question');
+let score;
+const questionTitle = document.querySelector('.question');
+const difficulty = document.querySelector('.difficulty');
 const questInputs = document.querySelectorAll('.ans');
 
 export function hideQuiz() {
@@ -19,19 +23,56 @@ export function start(quest) {
   console.log(quest);
   questions = quest;
   curQuestIndex = 0;
+  score = 0;
   loadQuestion();
 }
 
 export function loadQuestion() {
+  //Enable clicks
+  quiz.classList.remove('disable');
   const question = questions[curQuestIndex];
   questionTitle.innerText = question.title;
+  difficulty.innerText = question.difficulty;
   for (let i = 0; i < 3; i++) {
     questInputs[i].innerText = question.answers[i];
-    questInputs[i].dataset.ans = question.answers[i];
   }
-  curQuestIndex++;
 }
 
-export function ansClick(ans) {
-  console.log(ans);
+export async function ansClick(ans) {
+  //Disable clicks
+  quiz.classList.add('disable');
+  const question = questions[curQuestIndex];
+  const correctIndex = question.answers.indexOf(question.correctAnswer);
+  if (correctIndex === ans) {
+    console.log('Correct!');
+    score += question.difficulty;
+  } else {
+    console.log('OOf');
+  }
+  await highlightAnswers(correctIndex);
+  curQuestIndex++;
+  if (curQuestIndex < questions.length) loadQuestion();
+  else endQuiz();
+}
+
+function highlightAnswers(correct) {
+  for (let i = 0; i < 3; i++) {
+    if (i != correct) questInputs[i].classList.add('wrong');
+    else questInputs[i].classList.add('correct');
+  }
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      for (let i = 0; i < 3; i++) {
+        if (i != correct) questInputs[i].classList.remove('wrong');
+        else questInputs[i].classList.remove('correct');
+      }
+      resolve();
+    }, 1000);
+  });
+}
+
+function endQuiz() {
+  console.log(score);
+  hideQuiz();
+  showMenu();
 }

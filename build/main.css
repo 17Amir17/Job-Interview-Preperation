@@ -11302,7 +11302,8 @@ textarea.form-control-lg {
   text-align: center;
 }
 
-.btn-outline-dark {
+.btn-outline-dark,
+input {
   margin: 0.5em 0 0.5em 0;
   min-width: 40vw;
 }
@@ -11323,6 +11324,40 @@ textarea.form-control-lg {
 .ans {
   width: 60vw;
   text-align: left;
+}
+
+.ans:focus,
+.ans:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.wrong {
+  background-color: #f04141 !important;
+  outline: #f04141 !important;
+  outline-width: 1em;
+}
+
+.correct {
+  background-color: #31e631 !important;
+  outline: #31e631 !important;
+  outline-width: 1em;
+}
+
+.wrong:hover,
+.correct:hover {
+  background-color: initial;
+  color: initial;
+}
+
+.disable {
+  pointer-events: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 body {

@@ -14,7 +14,7 @@ const data = [
   {
     title: 'What is recursion in a programming language',
     correctAnswer:
-      'A technique to iterate over an operation by having a function call itself repeatedly until it arrives at a result.',
+      'A technique to iterate over an operation by having a function call itself repeatedly until it arrives at a result',
     answers: [
       'When a senior tells you to rewrite your function',
       'A technique to iterate over an operation by having a function call itself repeatedly until it arrives at a result',
@@ -35,7 +35,7 @@ const data = [
   },
   {
     title: 'What is Object Destructuring',
-    correctAnswer: 'A new way to extract elements from an object or an array.',
+    correctAnswer: 'A new way to extract elements from an object or an array',
     answers: [
       'A new way to extract elements from an object or an array',
       'A Memory Management feature that helps the garbage collector in js',
