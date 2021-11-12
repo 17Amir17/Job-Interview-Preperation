@@ -18,6 +18,10 @@ const config = {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, './src/pages/leaderboard.html'),
+      filename: 'leaderboard.html',
+    }),
 
     new MiniCssExtractPlugin(),
 

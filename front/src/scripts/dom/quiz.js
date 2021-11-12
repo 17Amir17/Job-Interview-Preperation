@@ -1,3 +1,5 @@
+import swal from 'sweetalert';
+import { sumbitScore } from '../api/api';
 import { showMenu } from './menu';
 
 const quiz = document.querySelector('.quiz');
@@ -68,12 +70,6 @@ function highlightAnswers(correct) {
   });
 }
 
-function endQuiz() {
-  console.log(score);
-  hideQuiz();
-  showMenu();
-}
-
 function shuffle(array) {
   let currentIndex = array.length,
     randomIndex;
@@ -86,4 +82,53 @@ function shuffle(array) {
     ];
   }
   return array;
+}
+
+function endQuiz() {
+  showDialog();
+}
+
+async function showDialog() {
+  try {
+    const save = await swal({
+      title: 'Nice!',
+      text: `Your score is ${score} do you wish to save to leaderboard?`,
+      buttons: true,
+    });
+    if (save) {
+      saveScore();
+    } else {
+      hideQuiz();
+      showMenu();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function saveScore() {
+  const name = await swal({
+    text: 'Enter Name',
+    content: 'input',
+    button: {
+      text: 'Save!',
+      closeModal: false,
+    },
+  });
+  if (!name) showDialog();
+  else {
+    try {
+      await sumbitScore(name, score);
+      swal.stopLoading();
+      swal.close();
+      swal('Done!');
+      hideQuiz();
+      showMenu();
+    } catch (error) {
+      console.log(error.response);
+      if (error.response) swal.alert(error.response.message);
+      else swal.alert('An error has occured');
+      showDialog();
+    }
+  }
 }

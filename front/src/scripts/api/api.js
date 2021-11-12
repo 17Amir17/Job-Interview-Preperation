@@ -12,12 +12,15 @@ export async function postQuestion(question) {
   return res;
 }
 
-export function getLeaderboard() {
+export async function getLeaderboard() {
   const res = await axios.get(`${base_url}/leaderboard/get`);
-  return res;
+  return res.data;
 }
 
-export function sumbitScore(name, score) {
-  const res = await axios.post(`${base_url}/leaderboard`, { name, score });
+export async function sumbitScore(name, score) {
+  const res = await axios.post(`${base_url}/leaderboard`, {
+    name,
+    score,
+  });
   return res;
 }

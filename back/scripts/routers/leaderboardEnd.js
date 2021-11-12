@@ -19,7 +19,7 @@ router.post('', async (req, res, next) => {
   try {
     const name = req.body.name;
     const score = Number(req.body.score);
-    if (!name || !score) throw errorCodes.requestInputInvalid;
+    if (!name || (!score && score != 0)) throw errorCodes.requestInputInvalid;
     const mongoRes = await userQueries.addOrUpdate(name, score);
     res.json({ message: mongoRes });
   } catch (error) {

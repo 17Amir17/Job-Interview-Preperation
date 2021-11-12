@@ -11360,6 +11360,38 @@ input {
   align-items: start;
 }
 
+@media (max-width: 500px) {
+  body {
+    font-size: large !important;
+  }
+
+  button {
+    min-width: 90vw !important;
+    font-size: larger !important;
+  }
+
+  .btn-outline-dark:hover {
+    color: unset;
+    background-color: unset;
+    border-color: unset;
+  }
+
+  .ans {
+    font-size: large !important;
+  }
+
+  .display {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.7s, visibility 0.7s;
+  }
+
+  .form {
+    align-items: unset !important;
+  }
+}
 body {
   display: flex;
   justify-content: center;
