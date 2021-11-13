@@ -33,9 +33,10 @@ export async function requestAdmin(password) {
   return res.data.auth;
 }
 
-export async function deleteQuestion(id) {
+export async function deleteQuestion(id, auth) {
   const res = await axios.delete(`${base_url}/remove`, {
     data: { id },
+    headers: { auth },
   });
   return res;
 }

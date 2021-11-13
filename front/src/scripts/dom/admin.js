@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import { deleteQuestion, getAllQuestions, requestAdmin } from '../api/api';
 
 const tbody = document.querySelector('tbody');
+let auth;
 
 export function login() {
   Swal.fire({
@@ -16,6 +17,7 @@ export function login() {
     preConfirm: (login) => {
       return requestAdmin(login)
         .then((response) => {
+          auth = login;
           if (!response) {
             throw new Error('Bad login');
           }
@@ -108,7 +110,7 @@ function deleteDialog(id) {
     confirmButtonText: 'Yes, delete it!',
   }).then((result) => {
     if (result.isConfirmed) {
-      deleteQuestion(id).then(
+      deleteQuestion(id, auth).then(
         () => {
           Swal.fire('Deleted!', 'Question has been deleted.', 'success');
           loadAdmin();
