@@ -10,8 +10,8 @@ export function login() {
     inputAttributes: {
       autocapitalize: 'off',
     },
-    showCancelButton: true,
     confirmButtonText: 'Login',
+    allowOutsideClick: false,
     showLoaderOnConfirm: true,
     preConfirm: (login) => {
       return requestAdmin(login)
@@ -25,13 +25,12 @@ export function login() {
           Swal.showValidationMessage(`Request failed: ${error}`);
         });
     },
-    allowOutsideClick: () => !Swal.isLoading(),
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
         title: `Logged in`,
       }).then(() => {
-        window.location.href = '/admin.html';
+        loadAdmin();
       });
     }
   });

@@ -14,7 +14,6 @@ const difficultySlider = document.querySelector('#diff-range');
 const addBack = document.querySelector('.add-back');
 const startBtn = document.querySelector('.start-btn');
 const quiz = document.querySelector('.quiz');
-const admin = document.querySelector('.admin');
 export function listen() {
   startBtn.addEventListener('click', onStartClick);
   quiz.addEventListener('click', onQuizClick);
@@ -22,5 +21,4 @@ export function listen() {
   postBtn.addEventListener('click', onPostClick);
   difficultySlider.addEventListener('change', onSliderChange);
   addBack.addEventListener('click', onBackClick);
-  admin.addEventListener('click', onAdminClick);
 }
