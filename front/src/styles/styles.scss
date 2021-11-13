@@ -27,3 +27,15 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #ff0000;
 }
+
+.admin {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  font-size: small;
+}
+
+.admin:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}

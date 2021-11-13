@@ -25,6 +25,9 @@ app.use(express.static(path.join(__dirname, '../build/')));
 app.get('', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
+app.post('/admin', (req, res) => {
+  res.json({ auth: req.body.password === process.env.PASSWORD });
+});
 // Routers
 app.use('/info', listRouter);
 app.use('/update', updateRouter);
