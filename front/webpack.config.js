@@ -22,6 +22,10 @@ const config = {
       template: path.join(__dirname, './src/pages/leaderboard.html'),
       filename: 'leaderboard.html',
     }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, './src/pages/admin.html'),
+      filename: 'admin.html',
+    }),
 
     new MiniCssExtractPlugin(),
 
