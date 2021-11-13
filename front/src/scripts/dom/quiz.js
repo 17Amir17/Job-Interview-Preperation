@@ -1,6 +1,7 @@
 import swal from 'sweetalert2';
 import { sumbitScore } from '../api/api';
 import { hideMenu, showMenu } from './menu';
+import { hideTitle, showTitle } from './title';
 
 const quiz = document.querySelector('.quiz');
 
@@ -14,11 +15,13 @@ const questInputs = document.querySelectorAll('.ans');
 export function hideQuiz() {
   quiz.classList.remove('display');
   quiz.classList.add('swoosh');
+  showTitle();
 }
 
 export function showQuiz() {
   quiz.classList.add('display');
   quiz.classList.remove('swoosh');
+  hideTitle();
 }
 
 export function start(quest) {
