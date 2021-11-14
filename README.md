@@ -46,4 +46,36 @@ router.delete('', async (req, res, next) => {
   }
 });
 ```
+### Set Score Endpoint
+You can no longer just send your score to the server, the server now tracks the users score with it's unique session id, and only save the score after it is validated.
+This took a hell of a long time to implement.  
+Some snippets:  
+Creation of session UUID
+```js
+if (newSession) {
+  //Create unique session
+  newSession = uuidv4();
+  sessions[newSession] = { score: 0, qIndex: 0 };
+}
+```  
+Server tracks score  
+```js
+//Check answer
+const { correct, diff } = await questionQueries.checkQuestion(id, answer);
+const userSession = sessions[session];
+if (!userSession) throw errorCodes.sessionDoesNotExists;
+if (correct) {
+  if ((await getMaxQ()) > userSession.qIndex) {
+    userSession.score += diff;
+  } else throw errorCodes.badAuth;
+}
+ ```
+ Server Validates Score
+ ```js
+const userSession = sessions[session];
+if(!userSession) throw errorCodes.sessionDoesNotExists;
+if (score != userSession.score) throw errorCodes.niceTryScrub;
+const mongoRes = await userQueries.addOrUpdate(name, score);
+delete userSession;
+ ```
 
