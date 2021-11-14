@@ -8,6 +8,8 @@ const errorCodes = {
   badEntryFormat: { message: 'Could not proccess entry', code: 422 },
   unknownMongoError: { message: 'Internal MongoDB error', code: 400 },
   badAuth: { message: 'Bad authentication', code: 401 },
+  niceTryScrub: { message: 'Nice try, my security is superior', code: 401 },
+  sessionDoesNotExists: { message: 'Session does not exists', code: 404 },
 };
 
 module.exports = errorCodes;

@@ -3,8 +3,9 @@ import axios from 'axios';
 // const base_url = 'http://localHost:3000';
 const base_url = 'https://fsinterview.herokuapp.com';
 
-export async function getAllQuestions() {
-  const res = await axios.get(`${base_url}/info`);
+export async function getAllQuestions(session = false) {
+  const headers = { session };
+  const res = await axios.get(`${base_url}/info`, { headers });
   return res.data;
 }
 
@@ -18,10 +19,11 @@ export async function getLeaderboard() {
   return res.data;
 }
 
-export async function sumbitScore(name, score) {
+export async function sumbitScore(name, score, session) {
   const res = await axios.post(`${base_url}/leaderboard`, {
     name,
     score,
+    session,
   });
   return res;
 }
@@ -37,6 +39,15 @@ export async function deleteQuestion(id, auth) {
   const res = await axios.delete(`${base_url}/remove`, {
     data: { id },
     headers: { auth },
+  });
+  return res;
+}
+
+export async function sendAnswer(id, answer, session) {
+  const res = await axios.post(`${base_url}/check`, {
+    id,
+    answer,
+    session,
   });
   return res;
 }

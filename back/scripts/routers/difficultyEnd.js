@@ -1,5 +1,5 @@
 const express = require('express');
-const errorCodes = require('../constants/errorCodes');
+const errorCodes = require('../data/errorCodes');
 const questionQueries = require('../mongo/queries/questionQueries');
 const router = express.Router();
 

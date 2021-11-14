@@ -1,5 +1,5 @@
 import swal from 'sweetalert2';
-import { sumbitScore } from '../api/api';
+import { sendAnswer, sumbitScore } from '../api/api';
 import { hideMenu, showMenu } from './menu';
 import { hideTitle, showTitle } from './title';
 
@@ -8,6 +8,7 @@ const quiz = document.querySelector('.quiz');
 let questions;
 let curQuestIndex;
 let score;
+let session;
 const questionTitle = document.querySelector('.question');
 const difficulty = document.querySelector('.difficulty');
 const questInputs = document.querySelectorAll('.ans');
@@ -24,8 +25,9 @@ export function showQuiz() {
   hideTitle();
 }
 
-export function start(quest) {
-  questions = quest;
+export function start(res) {
+  session = res.session;
+  questions = res.questions;
   curQuestIndex = 0;
   score = 0;
   loadQuestion();
@@ -51,6 +53,8 @@ export async function ansClick(ans) {
   if (correctIndex === ans) {
     score += question.difficulty;
   }
+  //Send backend answer
+  sendAnswer(question._id, question.answers[ans], session);
   await highlightAnswers(correctIndex);
   curQuestIndex++;
   if (curQuestIndex < questions.length) loadQuestion();
@@ -123,7 +127,7 @@ async function saveScore() {
       confirmButtonText: 'Save',
       showLoaderOnConfirm: true,
       preConfirm: (name) => {
-        return sumbitScore(name, score)
+        return sumbitScore(name, score, session)
           .then((response) => {
             if (!response.status === 200) {
               throw new Error(response.statusText);

@@ -10,6 +10,7 @@ const createRouter = require('./scripts/routers/createEnd');
 const deleteRouter = require('./scripts/routers/removeEnd');
 const difficultyRouter = require('./scripts/routers/difficultyEnd');
 const leaderboardRouter = require('./scripts/routers/leaderboardEnd');
+const checkRouter = require('./scripts/routers/checkEnd');
 //DB setup
 const mongoInit = mongo.init();
 //Port setup
@@ -35,6 +36,7 @@ app.use('/create', createRouter);
 app.use('/remove', deleteRouter);
 app.use('/read/by/difficulty', difficultyRouter);
 app.use('/leaderboard', leaderboardRouter);
+app.use('/check', checkRouter);
 // Error Handler
 // .....
 app.use(errorHandler);

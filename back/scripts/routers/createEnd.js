@@ -1,5 +1,6 @@
 const express = require('express');
-const errorCodes = require('../constants/errorCodes');
+const { setMaxQ } = require('../data/maxQ');
+const errorCodes = require('../data/errorCodes');
 const questionQueries = require('../mongo/queries/questionQueries');
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.post('', async (req, res, next) => {
     };
     if (!validate(question)) throw errorCodes.requestInputInvalid;
     const mongoRes = await questionQueries.addQuestion(question);
+    setMaxQ();
     res.json({ message: mongoRes });
   } catch (error) {
     next(error);

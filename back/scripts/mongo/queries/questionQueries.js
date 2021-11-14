@@ -1,4 +1,4 @@
-const errorCodes = require('../../constants/errorCodes');
+const errorCodes = require('../../data/errorCodes');
 const Question = require('../models/questions');
 
 async function insertMany(data) {
@@ -48,6 +48,18 @@ async function getGreaterOrEqual(difficulty) {
   }
 }
 
+async function checkQuestion(_id, answer) {
+  try {
+    const question = await Question.findOne({ _id });
+    return {
+      correct: question.correctAnswer === answer,
+      diff: question.difficulty,
+    };
+  } catch (error) {
+    throw errorCodes.badAuth;
+  }
+}
+
 module.exports = {
   insertMany,
   getAllQuestions,
@@ -55,4 +67,5 @@ module.exports = {
   addQuestion,
   deleteQuestionById,
   getGreaterOrEqual,
+  checkQuestion,
 };

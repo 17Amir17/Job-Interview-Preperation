@@ -1,4 +1,4 @@
-const errorCodes = require('../constants/errorCodes');
+const errorCodes = require('../data/errorCodes');
 
 function errorHandler(err, req, res, next) {
   for (const error in errorCodes) {

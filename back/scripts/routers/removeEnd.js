@@ -1,5 +1,6 @@
 const express = require('express');
-const errorCodes = require('../constants/errorCodes');
+const errorCodes = require('../data/errorCodes');
+const { setMaxQ } = require('../data/maxQ');
 const questionQueries = require('../mongo/queries/questionQueries');
 const router = express.Router();
 
@@ -10,6 +11,7 @@ router.delete('', async (req, res, next) => {
     if (auth !== process.env.PASSWORD) throw errorCodes.badAuth;
     if (!id) throw errorCodes.requestInputInvalid;
     const mongoRes = await questionQueries.deleteQuestionById(id);
+    setMaxQ();
     res.json({ message: mongoRes });
   } catch (error) {
     next(error);

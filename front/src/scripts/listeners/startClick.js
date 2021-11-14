@@ -13,7 +13,7 @@ export async function onStartClick(event) {
 
 async function getQuestions() {
   try {
-    start(await getAllQuestions());
+    start(await getAllQuestions(true));
   } catch (error) {
     alert('Something went wrong');
     setTimeout(() => {
