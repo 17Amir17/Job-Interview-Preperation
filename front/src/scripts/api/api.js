@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const base_url = 'http://localHost:3000';
-const base_url = 'https://fsinterview.herokuapp.com';
+const base_url = 'https://Job-Interview-Preperation.amirangel.repl.co';
 
 export async function getAllQuestions(session = false) {
   const headers = { session };
