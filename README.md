@@ -111,6 +111,8 @@ Do not protect the DOM elements protect the entire page.
 The set score endpoint did not validate the score whatsover as a result a malicuos users took advantage of that and gave himself a score of 49239213123  
 ### Fault and Impact
 Due to the poor security of the set score endpoint a malicious user gave himself an unfair and impossible score.  
+### Discovery  
+I knew that this was possible before fixing I didn't think somebody would do it :P
 ### Response and Recovery  
 Score was tracked by the backend server, checking each answer and counting the score, at the end comparing front end and back end scores and validating them, the malicous users score was manually set to -420 as a punishment.
 ### Leasons Learned  
@@ -120,6 +122,8 @@ All endpoints should be protected and validated.
 It is possible to create a question with a difficulty of 0 - 10, a malicous user created one with 42193193 difficulty resulting in a very high score.  
 ### Fault and Impact 
 This was possible because the backend relied on valid input from the frontend (which capped difficulty at 10) however I didn;t take to account that a user can manually send requests to create questions.
+### Discovery
+I opened administrator tools and found the manipulated question.
 ### Response and Recovery 
 I added input validation to the create question endpoint so that a difficulty over 10 is not possible. I decided to keep the malicous users score a reminder of how easy it is to make mistakes. 
 ### Leasons Learned  
@@ -129,14 +133,18 @@ Do not rely on the frontend for valid input, always validate input on the backen
 In order to bypass the newly added validation of my create question endpoint a malicous users found a way to add a question with a high difficulty by using the update question endpoint.
 ### Fault and Impact
 I completely forgot I had an update question endpoint, as a result when patching the previous vulnerability, I forgot to patch this endpoint, resulting in the malicious users beating me again :(
+### Discovery
+At first I could not find the vulnurability, so I asked the malicous person via an anonymous site https://xoyondo.com/mb/wxYehXDJyoGRXM5/2RnKFZHANY and he agreed to do it again after I installed morgan, after installing morgan I could see he was using my put request, which I forgot existed.
 ### Response and Recovery  
 I removed the endpoint as I do not use it anyways, and decided to keep his score as another reminder.  
 ### Leasons Learned  
-Never keep unused endpoints because you can forget them, if you must keep them make sure they are secure.
+Never keep unused endpoints because you can forget them, if you must keep them make sure they are secure.  
+Install morgan!!!
 ## Leasons Learned Summary:
 * Do not protect the DOM elements protect the entire page.
 * All endpoints should be protected and validated. 
 * Do not rely on the frontend for valid input, always validate input on the backend. 
 * Never keep unused endpoints because you can forget them, if you must keep them make sure they are secure.
+* Install Morgan on backend on keep logs!
 
 
