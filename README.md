@@ -3,6 +3,20 @@ Job interview preparation questions system database and Frontend
 
 [replit](https://Job-Interview-Preperation.amirangel.repl.co)
 
+# Table of Contents
+- [Job-Interview-Preperation](#job-interview-preperation)
+  * [Features](#features)
+  * [MongoDB Usage](#mongodb-usage)
+  * [Security](#security)
+    + [Administrator tools](#administrator-tools)
+    + [delete endpoint](#delete-endpoint)
+    + [Set Score Endpoint](#set-score-endpoint)
+- [Incident Postmortem](#incident-postmortem)
+  * [Admin Controls](#admin-controls)
+  * [Set Score Endpoint Vulnerability](#set-score-endpoint-vulnerability)
+  * [Create Question Vulnerability](#create-question-vulnerability)
+  * [Update Question Vulnerability](#update-question-vulnerability)
+
 ## Features
 * Short quiz of user written questions
 * Save score to leaderboard
@@ -80,4 +94,49 @@ if (score != userSession.score) throw errorCodes.niceTryScrub;
 const mongoRes = await userQueries.addOrUpdate(name, score);
 delete userSession;
  ```
+
+# Incident Postmortem
+There were 4 Incidents
+## Admin Controls
+### Summary
+The admin controls page could be visited by anyone, including malicious and regular users. A malicous user deleted all questions.
+### Fault and Impact
+The button was protected by a password however the page was not, users could just navigate to /admin.html as a result all questions were deleted  
+### Response and Recovery  
+I added a password to the admin page itself, and manually added the questions again  
+### Leasons Learned  
+Do not protect the DOM elements protect the entire page.
+## Set Score Endpoint Vulnerability
+### Summary
+The set score endpoint did not validate the score whatsover as a result a malicuos users took advantage of that and gave himself a score of 49239213123  
+### Fault and Impact
+Due to the poor security of the set score endpoint a malicious user gave himself an unfair and impossible score.  
+### Response and Recovery  
+Score was tracked by the backend server, checking each answer and counting the score, at the end comparing front end and back end scores and validating them, the malicous users score was manually set to -420 as a punishment.
+### Leasons Learned  
+All endpoints should be protected and validated.  
+## Create Question Vulnerability
+### Summary  
+It is possible to create a question with a difficulty of 0 - 10, a malicous user created one with 42193193 difficulty resulting in a very high score.  
+### Fault and Impact 
+This was possible because the backend relied on valid input from the frontend (which capped difficulty at 10) however I didn;t take to account that a user can manually send requests to create questions.
+### Response and Recovery 
+I added input validation to the create question endpoint so that a difficulty over 10 is not possible. I decided to keep the malicous users score a reminder of how easy it is to make mistakes. 
+### Leasons Learned  
+Do not rely on the frontend for valid input, always validate input on the backend. 
+## Update Question Vulnerability
+### Summary  
+In order to bypass the newly added validation of my create question endpoint a malicous users found a way to add a question with a high difficulty by using the update question endpoint.
+### Fault and Impact
+I completely forgot I had an update question endpoint, as a result when patching the previous vulnerability, I forgot to patch this endpoint, resulting in the malicious users beating me again :(
+### Response and Recovery  
+I removed the endpoint as I do not use it anyways, and decided to keep his score as another reminder.  
+### Leasons Learned  
+Never keep unused endpoints because you can forget them, if you must keep them make sure they are secure.
+## Leasons Learned Summary:
+* Do not protect the DOM elements protect the entire page.
+* All endpoints should be protected and validated. 
+* Do not rely on the frontend for valid input, always validate input on the backend. 
+* Never keep unused endpoints because you can forget them, if you must keep them make sure they are secure.
+
 
