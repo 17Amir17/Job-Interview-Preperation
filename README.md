@@ -136,7 +136,7 @@ In order to bypass the newly added validation of my create question endpoint a m
 ### Fault and Impact
 I completely forgot I had an update question endpoint, as a result when patching the previous vulnerability, I forgot to patch this endpoint, resulting in the malicious users beating me again :(
 ### Discovery
-At first I could not find the vulnurability, so I asked the malicous person via an anonymous site https://xoyondo.com/mb/wxYehXDJyoGRXM5/2RnKFZHANY.   
+At first I could not find the vulnurability, so I asked the malicous person via an anonymous site https://xoyondo.com/mb/wxYehXDJyoGRXM5.   
 <img width="219" alt="mercy" src="https://user-images.githubusercontent.com/36531255/141794690-51742ba3-ca83-4f44-8ff4-f7495ff84abf.PNG"><img width="309" alt="hacker" src="https://user-images.githubusercontent.com/36531255/141794731-32663b87-baa6-4968-aeb9-1dac8408e9db.png">  
 After installing morgan I could see he was using my put request, which I forgot existed.
 ### Response and Recovery  
