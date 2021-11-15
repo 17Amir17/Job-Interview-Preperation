@@ -149,6 +149,6 @@ Install morgan!!!
 * All endpoints should be protected and validated. 
 * Do not rely on the frontend for valid input, always validate input on the backend. 
 * Never keep unused endpoints because you can forget them, if you must keep them make sure they are secure.
-* Install Morgan on backend on keep logs!
+* Install Morgan on backend and keep logs!
 
 
