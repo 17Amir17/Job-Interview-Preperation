@@ -14,6 +14,7 @@ router.post('', async (req, res, next) => {
       answers: question.answers,
       difficulty: question.difficulty,
     };
+    if (question.difficulty > 10) throw errorCodes.niceTryScrub;
     if (!validate(question)) throw errorCodes.requestInputInvalid;
     const mongoRes = await questionQueries.addQuestion(question);
     setMaxQ();
