@@ -96,7 +96,9 @@ delete userSession;
  ```
 
 # Incident Postmortem
-There were 4 Incidents
+The internet is a dangerous place with many malicous users. I was confident with my security so I challanged one of them.    
+<img width="213" alt="challange" src="https://user-images.githubusercontent.com/36531255/141794433-80580487-748c-437f-b844-39a9ade27a84.PNG">
+
 ## Admin Controls
 ### Summary
 The admin controls page could be visited by anyone, including malicious and regular users. A malicous user deleted all questions.
@@ -134,7 +136,10 @@ In order to bypass the newly added validation of my create question endpoint a m
 ### Fault and Impact
 I completely forgot I had an update question endpoint, as a result when patching the previous vulnerability, I forgot to patch this endpoint, resulting in the malicious users beating me again :(
 ### Discovery
-At first I could not find the vulnurability, so I asked the malicous person via an anonymous site https://xoyondo.com/mb/wxYehXDJyoGRXM5/2RnKFZHANY and he agreed to do it again after I installed morgan, after installing morgan I could see he was using my put request, which I forgot existed.
+At first I could not find the vulnurability, so I asked the malicous person via an anonymous site https://xoyondo.com/mb/wxYehXDJyoGRXM5/2RnKFZHANY.  
+<img width="213" alt="challange" src="https://user-images.githubusercontent.com/36531255/141794561-af84098e-a25f-4ace-906b-42b618eac04a.PNG">
+<img width="309" alt="hacker" src="https://user-images.githubusercontent.com/36531255/141794595-1ef88031-0d74-4651-a7d3-a67285de7b3b.png">
+After installing morgan I could see he was using my put request, which I forgot existed.
 ### Response and Recovery  
 I removed the endpoint as I do not use it anyways, and decided to keep his score as another reminder.  
 ### Leasons Learned  
